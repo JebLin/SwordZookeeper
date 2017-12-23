@@ -12,6 +12,18 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @Decription
+ * @Author: rd_jianbin_lin
+ * @Date : 2017/12/23 10:03
+ */
+/*
+    为了避免网络抖动带来的资源迁移问题。
+    “最近一次选出的master是自己吗？”这句话的意思是master宕机前那台机器是不是自己，不是自己的话，
+    我就先礼让你们5秒，优先给老机器抢master的权利，如果你还是没抢到，那么对不起，我觉得你宕机了，
+    我就要开抢了。
+
+ */
 public class WorkServer {
 
     private volatile boolean running = false;
