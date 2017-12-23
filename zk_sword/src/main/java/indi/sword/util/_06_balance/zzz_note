@@ -1,0 +1,16 @@
+
+负载均衡
+
+3.balance
+
+ server
+     RegistProvider
+     BalanceUpdateProvider
+     DefaultRegistProvider
+     ServerData
+     DefaultBalanceUpdateProvider
+
+ client
+     Client
+     AbstractBalanceProvider
+     DefaultBalanceProvider

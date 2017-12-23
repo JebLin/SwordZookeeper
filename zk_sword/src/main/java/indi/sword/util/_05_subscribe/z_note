@@ -1,0 +1,22 @@
+
+数据的发布和订阅
+
+左侧是ZooKeeper集群
+ZooKeeper中有三类节点：
+1.Config节点
+	用于配置管理
+2.Servers节点
+	用于服务发现，每个Work Server启东时都会在Servers节点下注册一个临时节点。
+3.Command节点
+
+右侧是服务器集群
+1.工作服务器 Work Server
+   可以通过订阅Config节点的改变来更新自己的配置。
+2.管理服务器 Manage Server
+    a.可以通过Config节点下发配置信息。
+    b.当做Monitor,通过监控Servers节点的子节点列表的改变来更新自己内存中工作服务器列表的信息
+3.控制服务器 Control Server
+	通过Control Server 由Command节点作为中介 ，来向Manage Server发送控制指令（Control Server 想向Command节点写入命令信息，
+	Manage Server订阅Command节点的数据改变事件来监听并执行命令）。
+
+

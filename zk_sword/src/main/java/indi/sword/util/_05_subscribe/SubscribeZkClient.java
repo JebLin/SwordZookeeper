@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SubscribeZkClient {
-    private static final int CLIENT_QTY = 5;
+    private static final int CLIENT_QTY = 5; // 跑几个客户端
     private static final String ZOOKEEPER_SERVER = "172.18.1.100:2181";
-    private static final String CONFIG_PATH = "/config";
-    private static final String COMMAND_PATH = "/command";
-    private static final String SERVERS_PATH = "/servers";
+    private static final String CONFIG_PATH = "/config"; // 配置文件config目录
+    private static final String COMMAND_PATH = "/command"; // 命令节点，放数据的
+    private static final String SERVERS_PATH = "/servers"; // 服务器父节点
 
     public static void main(String[] args) {
         List<ZkClient> clients = new ArrayList<>();

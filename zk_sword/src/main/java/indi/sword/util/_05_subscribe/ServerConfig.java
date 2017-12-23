@@ -1,7 +1,7 @@
 package indi.sword.util._05_subscribe;
 
 /**
- * @Decription  放数据的
+ * @Decription  放数据的，假如是数据库配置
  * @Author: rd_jianbin_lin
  * @Date : 2017/12/23 12:07
  */
