@@ -57,7 +57,7 @@ public class ServerImpl implements Server {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
                         ChannelPipeline channelPipeline = socketChannel.pipeline();
-                        channelPipeline.addLast(new ServerHandler(new DefaultBalanceUpdateProvider(currentServerPath,zkClient)));
+                        channelPipeline.addLast(new ServerHandler(new DefaultBalanceUpdateProvider(currentServerPath,zkClient))); // 这个管理权重
                     }
                 });
         try {

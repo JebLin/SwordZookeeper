@@ -12,24 +12,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClientRunner {
-    private static final int CLIENT_QTY = 3;
+    private static final int CLIENT_QTY = 5; // 开5个客户端去连接，测试负载均衡
     private static final String ZOOKEEPER_SERVER = "172.18.1.100:2181";
     private static final String SERVER_PATH = "/servers";
 
     public static void main(String[] args) throws InterruptedException {
         List<Thread> threadList = new ArrayList<>();
-        final List<Client> clientList = new ArrayList<>();
+        final List<Client> clientList = new ArrayList<>();  // 客户端列表
         final BalanceProvider<ServerData> balanceProvider =
-                new DefaultBalanceProvider(ZOOKEEPER_SERVER,SERVER_PATH);
-
-
+                new DefaultBalanceProvider(ZOOKEEPER_SERVER,SERVER_PATH); // 全部客户端用同一个 balanceProvider 负载均衡器，由一个来进行调度
         try {
             for(int i =0 ;i < CLIENT_QTY;i++){
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        Client client = new ClientImpl(balanceProvider);
-                        clientList.add(client);
+                        Client client = new ClientImpl(balanceProvider); //
+                        clientList.add(client); // clientList 用来关闭资源的
                         try {
                             client.connect();
                         } catch (Exception e) {

@@ -5,14 +5,14 @@ import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * @Decription 这个是用来控制权重的
+ * @Decription 这个是用来控制权重的，放在 ServerImpl 类里面
  * @Author: rd_jianbin_lin
  * @Date : 2017/12/23 16:47
  */
 public class ServerHandler extends ChannelHandlerAdapter {
 
     private final BalanceUpdateProvider balanceUpdater;
-    private static final Integer BALANCE_STEP = 1;
+    private static final Integer BALANCE_STEP = 1; // 每次增加的balance量
 
 
     public ServerHandler(BalanceUpdateProvider balanceUpdater){

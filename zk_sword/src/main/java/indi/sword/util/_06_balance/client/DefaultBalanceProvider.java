@@ -31,7 +31,6 @@ public class DefaultBalanceProvider extends AbstractBalanceProvider<ServerData> 
     @Override
     protected ServerData balanceAlgorithm(List<ServerData> items) {
         if(items.size() > 0){
-            System.out.println(items.toString());
             Collections.sort(items);
             return items.get(0);
         }else{

@@ -26,7 +26,7 @@ public class ClientImpl implements Client {
     @Override
     public void connect() throws Exception {
         try {
-            ServerData serverData = provider.getBalanceItem();
+            ServerData serverData = provider.getBalanceItem(); // 获取分配到的服务器的 ip port等信息
             System.out.println("connection to " + serverData.getHost() + ":" +
                     serverData.getPort() + ",it's balance:" + serverData.getBalance());
 
