@@ -1,4 +1,4 @@
-package indi.sword.util._03_curator;
+package indi.sword.util._03_curator_cruda;
 
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;

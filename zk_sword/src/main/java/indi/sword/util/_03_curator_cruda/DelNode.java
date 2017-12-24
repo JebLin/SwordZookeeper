@@ -1,13 +1,11 @@
-package indi.sword.util._03_curator;
+package indi.sword.util._03_curator_cruda;
 
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
-import org.apache.curator.framework.recipes.cache.NodeCache;
-import org.apache.curator.framework.recipes.cache.NodeCacheListener;
 import org.apache.curator.retry.RetryUntilElapsed;
 
-public class NodeListener {
+public class DelNode {
     public static void main(String[] args) throws Exception {
         RetryPolicy retryPolicy = new RetryUntilElapsed(5000,1000);
 
@@ -17,18 +15,10 @@ public class NodeListener {
                 .connectionTimeoutMs(5000)
                 .retryPolicy(retryPolicy)
                 .build();
+
         client.start();
 
-        final NodeCache cache = new NodeCache(client,"/jike");
-        cache.start();
-
-        cache.getListenable().addListener(new NodeCacheListener() {
-            @Override
-            public void nodeChanged() throws Exception {
-                byte[] ret = cache.getCurrentData().getData();
-                System.out.println("new data: " + new String(ret));
-            }
-        });
+        client.delete().guaranteed().deletingChildrenIfNeeded().withVersion(-1).forPath("/jike");
 
         Thread.sleep(Integer.MAX_VALUE);
     }

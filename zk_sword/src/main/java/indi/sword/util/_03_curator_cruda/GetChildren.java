@@ -1,12 +1,18 @@
-package indi.sword.util._03_curator;
+package indi.sword.util._03_curator_cruda;
 
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryUntilElapsed;
 
-public class DelNode {
+import java.util.List;
+
+public class GetChildren {
     public static void main(String[] args) throws Exception {
+        //RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
+        //RetryPolicy retryPolicy = new RetryNTimes(5, 1000);
+//		CuratorFramework client = CuratorFrameworkFactory
+//				.newClient("192.168.1.105:2181",5000,5000, retryPolicy);
         RetryPolicy retryPolicy = new RetryUntilElapsed(5000,1000);
 
         CuratorFramework client = CuratorFrameworkFactory.builder()
@@ -17,9 +23,10 @@ public class DelNode {
                 .build();
 
         client.start();
+        List<String> cList = client.getChildren().forPath("/jike20");
 
-        client.delete().guaranteed().deletingChildrenIfNeeded().withVersion(-1).forPath("/jike");
+        System.out.println(cList.toString());
 
-        Thread.sleep(Integer.MAX_VALUE);
+
     }
 }
